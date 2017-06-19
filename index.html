@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <img src="GS_BBY.png" alt="Logo" id="logo" style="position:absolute; TOP:225px; LEFT:765px; WIDTH:350px; HEIGHT:150px">
+    <style>
+        body{
+            background: #000;
+        }
+        .clock{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: #ff6b2c;
+            font-size: 80px;
+            padding: 0px 5px 0px 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="ClockDisplay" class="clock"></div>
+    <script type="text/javascript">
+        function showTime(){
+            var date = new Date();
+            var hours = date.getHours(0); // 0 - 23
+            var minutes = date.getMinutes(); // 0 - 59
+            var seconds = date.getSeconds(); // 0 - 59
+            var session = "AM";
+
+            if(hours === 0){
+                hours = 12;
+            }
+
+            if(hours > 12){
+                hours -= 12;
+                session = "PM";
+            }
+
+            hours = (hours < 10) ? "0" + hours : hours;
+            minnutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            var time = hours + ":" + minutes + ":" + seconds + " " + session;
+            document.getElementById("ClockDisplay").innerText = time;
+            document.getElementById("ClockDisplay").textContent = time;
+        }
+
+        showTime();
+        setInterval(showTime, 1000);
+
+    </script>
+</body>
+</html>
