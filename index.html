@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Geek Squad Clock Widget</title>
+    <!-- GS/BBY Logo -->
     <img src="GS_BBY.png" alt="Logo" id="logo" style="position:absolute; TOP:100px; LEFT:450px; WIDTH:350px; HEIGHT:150px">
+    <!-- Using CSS to style the clock and color background -->
     <style>
         body{
             background: #000;
@@ -13,44 +15,41 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
-            color: #ff6b2c;
+            color: #cf6834;
             font-size: 80px;
             padding: 0px 5px 0px 5px;
         }
-
     </style>
 </head>
 <body>
-    <div id="ClockDisplay" class="clock"></div>
-    <script type="text/javascript">
-        function showTime(){
-            var date = new Date();
-            var hours = date.getHours(0); // 0 - 23
-            var minutes = date.getMinutes(); // 0 - 59
-            var seconds = date.getSeconds(); // 0 - 59
-            var session = "AM";
-
-            if(hours === 0){
-                hours = 12;
-            }
-
-            if(hours > 12){
-                hours -= 12;
-                session = "PM";
-            }
-
-            hours = (hours < 10) ? "0" + hours : hours;
-            minutes = (minutes < 10) ? "0" + minutes : minutes;
-            seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-            var time = hours + ":" + minutes + ":" + seconds + " " + session;
-            document.getElementById("ClockDisplay").innerText = time;
-            document.getElementById("ClockDisplay").textContent = time;
+<div id="ClockDisplay" class="clock"></div>
+<!-- Dynamically show time -->
+<script type="text/javascript">
+    function showTime(){
+        // Initialize date object
+        var date = new Date();
+        var hours = date.getHours(); // 0 - 23
+        var minutes = date.getMinutes(); // 0 - 59
+        var seconds = date.getSeconds(); // 0 - 59
+        var session = "AM";
+        if(hours === 0){
+            hours = 12;
+        }
+        if(hours > 12){
+            hours -= 12;
+            session = "PM";
         }
 
-        showTime();
-        setInterval(showTime, 1000);
-
-    </script>
+        // Formatting with true false statements
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        seconds = (seconds < 10) ? "0" + seconds : seconds;
+        var time = hours + ":" + minutes + ":" + seconds + " " + session;
+        document.getElementById("ClockDisplay").innerText = time;
+    }
+    // Start initial call of showTime so there isn't a delay for display
+    showTime();
+    setInterval(showTime, 1000);
+</script>
 </body>
 </html>
